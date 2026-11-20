@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindMate AI - Personal Wellness & Student Productivity Companion</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Ambient Light Orbs for Glassmorphism -->
+  <div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Header Bar -->
+  <header class="header-bar">
+    <a href="/" class="brand">
+      <div class="brand-icon">🧠</div>
+      <div class="brand-text">
+        <h1>MindMate AI</h1>
+        <p>Student Wellness & Productivity Companion</p>
+      </div>
+    </a>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="chat">
+        <span>💬</span> AI Companion
+      </button>
+      <button class="nav-tab" data-tab="mood">
+        <span>📊</span> Mood Tracker
+      </button>
+      <button class="nav-tab" data-tab="study">
+        <span>📚</span> Study Planner
+      </button>
+      <button class="nav-tab" data-tab="wellness">
+        <span>🌿</span> Focus & Calm
+      </button>
+      <button class="nav-tab" data-tab="profile">
+        <span>👤</span> Profile
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- ========================================== -->
+    <!-- TAB 1: AI COMPANION CHAT                   -->
+    <!-- ========================================== -->
+    <section id="tab-chat" class="tab-content">
+      <div class="chat-layout">
+        
+        <!-- Left: Chat Panel -->
+        <div class="glass-panel chat-box">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+                <h2 class="panel-title" style="margin-bottom: 0;"><span>💬</span> Conversational Companion</h2>
+                <span id="aiModelBadge" style="font-size: 0.72rem; background: #e0e7ff; color: #4338ca; padding: 0.2rem 0.55rem; border-radius: 50px; font-weight: 700; display: inline-flex; align-items: center; gap: 0.3rem;">
+                  ✨ Gemini 3.5 Flash
+                </span>
+              </div>
+              <span style="font-size: 0.82rem; color: var(--text-muted); display: block; margin-top: 0.2rem;">Live context-aware dialogue with real-time emotion & safety analysis</span>
+            </div>
+            <button id="clearChatBtn" class="icon-btn" title="Reset Conversation" style="width: 36px; height: 36px; font-size: 0.9rem;">
+              🔄
+            </button>
+          </div>
+
+          <!-- Messages Container -->
+          <div class="chat-messages" id="chatMessages">
+            <!-- Messages populated dynamically -->
+          </div>
+
+          <!-- Input Bar -->
+          <div class="chat-input-container">
+            <input 
+              type="text" 
+              id="chatInput" 
+              class="chat-input" 
+              placeholder="Share how you're feeling, ask about exams, or plan a study session..." 
+              autocomplete="off"
+            />
+            <button id="micBtn" class="icon-btn" title="Voice Input (Speech to Text)">
+              🎙️
+            </button>
+            <button id="sendBtn" class="btn-send">
+              <span>Send</span>
+              <span>➤</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Real-time Emotion Insights -->
+        <div>
+          <!-- Current Emotion State -->
+          <div class="glass-panel sidebar-card">
+            <div class="sidebar-title">Live Emotional State</div>
+            <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem;">
+              <div id="liveEmotionEmoji" style="font-size: 2.2rem;">🧘‍♂️</div>
+              <div>
+                <strong id="liveEmotionLabel" style="font-size: 1.1rem; display: block; text-transform: capitalize;">Focused & Calm</strong>
+                <span id="liveEmotionConfidence" style="font-size: 0.78rem; color: var(--text-muted);">Confidence: 85%</span>
+              </div>
+            </div>
+            <p id="liveEmotionAdvice" style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">
+              Steady cognitive state. Ideal for deep conceptual learning like Algorithms or Machine Learning.
+            </p>
+          </div>
+
+          <!-- Academic Quick Shortcuts -->
+          <div class="glass-panel sidebar-card">
+            <div class="sidebar-title">Suggested Quick Actions</div>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <button class="nav-switch-btn chip-btn" data-target="wellness" style="text-align: left; padding: 0.6rem 0.85rem; border-radius: 8px;">
+                🧘 2-Min Reset Breathing
+              </button>
+              <button class="nav-switch-btn chip-btn" data-target="study" style="text-align: left; padding: 0.6rem 0.85rem; border-radius: 8px;">
+                📖 Review AI & ML Checklist
+              </button>
+              <button class="nav-switch-btn chip-btn" data-target="mood" style="text-align: left; padding: 0.6rem 0.85rem; border-radius: 8px;">
+                📝 Log Current Mood
+              </button>
+            </div>
+          </div>
+
+          <!-- Safety Helpline Card -->
+          <div class="glass-panel sidebar-card" style="border-left: 4px solid var(--accent-indigo);">
+            <div class="sidebar-title">Student Support & Crisis</div>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+              Confidential 24/7 National Mental Health Helpline (India):
+            </p>
+            <strong style="color: var(--accent-indigo); font-size: 0.95rem;">📞 14416 (Tele-MANAS)</strong>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.3rem;">Toll-free, certified support.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: MOOD TRACKER                       -->
+    <!-- ========================================== -->
+    <section id="tab-mood" class="tab-content" style="display: none;">
+      <div class="glass-panel">
+        <h2 class="panel-title"><span>📊</span> Daily Mood & Emotional Trends</h2>
+        <p class="panel-subtitle">Log your emotional state daily to detect early signs of exam burnout and balance academic pressure.</p>
+
+        <!-- Mood Selector Cards -->
+        <div class="mood-selector" id="moodSelector">
+          <div class="mood-option" data-mood="motivated" data-score="90">
+            <span class="mood-emoji">🤩</span>
+            <span class="mood-name">Motivated</span>
+          </div>
+          <div class="mood-option selected" data-mood="calm" data-score="80">
+            <span class="mood-emoji">😊</span>
+            <span class="mood-name">Calm</span>
+          </div>
+          <div class="mood-option" data-mood="okay" data-score="70">
+            <span class="mood-emoji">😐</span>
+            <span class="mood-name">Okay</span>
+          </div>
+          <div class="mood-option" data-mood="stressed" data-score="50">
+            <span class="mood-emoji">😫</span>
+            <span class="mood-name">Stressed</span>
+          </div>
+          <div class="mood-option" data-mood="exhausted" data-score="40">
+            <span class="mood-emoji">😴</span>
+            <span class="mood-name">Exhausted</span>
+          </div>
+        </div>
+
+        <!-- Note & Tag form -->
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+          <input 
+            type="text" 
+            id="moodNoteInput" 
+            class="chat-input" 
+            style="flex: 2; min-width: 260px;" 
+            placeholder="Add a quick note (e.g. Solved DAA assignment, feeling relieved)..." 
+          />
+          <select id="moodTagSelect" class="chat-input" style="flex: 1; min-width: 140px; cursor: pointer;">
+            <option value="Academic">📚 Academic</option>
+            <option value="Coding">💻 Coding</option>
+            <option value="Exams">📝 Exams</option>
+            <option value="Health">💤 Health/Sleep</option>
+            <option value="Wellness">🌿 Wellness</option>
+          </select>
+          <button id="saveMoodBtn" class="btn-send">
+            <span>Log Mood</span>
+          </button>
+        </div>
+
+        <!-- 7-Day Trend Chart SVG -->
+        <div class="chart-container">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <strong style="font-size: 1.05rem;">7-Day Wellness Score Trend</strong>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Historical tracking for Yash Kumar (Roll: 2400521520071)</p>
+            </div>
+            <div style="display: flex; gap: 1rem; font-size: 0.85rem;">
+              <span>Average: <strong id="avgScoreDisplay" style="color: var(--accent-indigo);">78/100</strong></span>
+              <span>Streak: <strong id="streakDisplay" style="color: var(--accent-emerald);">5 Days 🔥</strong></span>
+            </div>
+          </div>
+
+          <div style="overflow-x: auto; padding: 0.5rem 0;">
+            <svg id="moodChartSvg" width="100%" height="220" viewBox="0 0 700 220" style="overflow: visible;">
+              <!-- Dynamic SVG Chart Elements rendered via JS -->
+            </svg>
+          </div>
+        </div>
+
+        <!-- Mood Log History List -->
+        <div style="margin-top: 2rem;">
+          <h3 style="font-size: 1.05rem; margin-bottom: 1rem; color: var(--text-secondary);">Recent Log History</h3>
+          <div id="moodLogList" style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: STUDY PLANNER                      -->
+    <!-- ========================================== -->
+    <section id="tab-study" class="tab-content" style="display: none;">
+      <div class="glass-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2 class="panel-title"><span>📚</span> AI Study Planner & Exam Countdown</h2>
+            <p class="panel-subtitle" style="margin-bottom: 0;">Automated preparation schedules tailored for IET Lucknow CSE (AI) examinations.</p>
+          </div>
+          <button id="openScheduleModalBtn" class="btn-send">
+            <span>➕ Generate AI Schedule</span>
+          </button>
+        </div>
+
+        <!-- Subject Cards Grid -->
+        <div class="study-grid" id="studyGrid">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: WELLNESS & FOCUS HUB               -->
+    <!-- ========================================== -->
+    <section id="tab-wellness" class="tab-content" style="display: none;">
+      <div class="wellness-grid">
+        
+        <!-- 4-7-8 Breathing Technique Widget -->
+        <div class="glass-panel breathing-box">
+          <h2 class="panel-title" style="justify-content: center; margin-bottom: 0.2rem;">
+            <span>🌬️</span> 4-7-8 Parasympathetic Reset
+          </h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.75rem;">
+            Scientifically proven breathing rhythm to lower exam anxiety in under 2 minutes.
+          </p>
+
+          <div class="breathe-circle-outer" id="breatheCircle">
+            <div class="breathe-circle-inner">
+              <span class="breathe-prompt" id="breathePrompt">Ready</span>
+              <span class="breathe-timer" id="breatheCount">4s</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem;">
+            <button id="startBreatheBtn" class="btn-send" style="padding: 0 1.75rem;">
+              Start Exercise
+            </button>
+            <button id="stopBreatheBtn" class="icon-btn" style="width: auto; padding: 0 1rem; font-size: 0.85rem; display: none;">
+              Stop
+            </button>
+          </div>
+        </div>
+
+        <!-- Pomodoro Focus Timer -->
+        <div class="glass-panel pomodoro-box">
+          <h2 class="panel-title" style="justify-content: center; margin-bottom: 0.2rem;">
+            <span>⏱️</span> Study Focus Pomodoro
+          </h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            50-minute deep work sprint with 10-minute active mental break.
+          </p>
+
+          <div style="display: flex; gap: 0.5rem; justify-content: center;">
+            <button class="timer-mode-btn chip-btn active" data-time="1500" style="padding: 0.35rem 0.85rem;">25m Sprint</button>
+            <button class="timer-mode-btn chip-btn" data-time="3000" style="padding: 0.35rem 0.85rem;">50m Deep Work</button>
+            <button class="timer-mode-btn chip-btn" data-time="300" style="padding: 0.35rem 0.85rem;">5m Break</button>
+          </div>
+
+          <div class="timer-display" id="timerDisplay">25:00</div>
+
+          <div style="display: flex; gap: 0.75rem; justify-content: center;">
+            <button id="timerToggleBtn" class="btn-send" style="padding: 0 2rem;">
+              Start Focus
+            </button>
+            <button id="timerResetBtn" class="icon-btn" title="Reset Timer">
+              ↺
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Wellness & Study Tips Grid -->
+      <div style="margin-top: 2rem;">
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">
+          🧠 Student Wellness & Cognitive Techniques
+        </h3>
+        <div id="wellnessTipsGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 5: STUDENT PROFILE                    -->
+    <!-- ========================================== -->
+    <section id="tab-profile" class="tab-content" style="display: none;">
+      <div class="glass-panel" style="max-width: 800px; margin: 0 auto;">
+        
+        <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap;">
+          <img id="profileAvatar" src="" class="msg-avatar" style="width: 80px; height: 80px; border: 3px solid rgba(255,255,255,0.9); box-shadow: 0 8px 24px rgba(99,102,241,0.2);" />
+          <div>
+            <h2 id="profileName" style="font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px;">Yash Kumar</h2>
+            <p id="profileBranch" style="color: var(--accent-indigo); font-weight: 600; font-size: 0.95rem;">CSE (Artificial Intelligence)</p>
+            <span id="profileCollege" style="color: var(--text-muted); font-size: 0.85rem;">Institute of Engineering and Technology (IET), Lucknow</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+          <div style="background: rgba(255,255,255,0.7); border: 1px solid var(--glass-border); padding: 1.25rem; border-radius: var(--radius-lg); text-align: center;">
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Roll Number</span>
+            <div id="profileRoll" style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-top: 0.3rem;">2400521520071</div>
+          </div>
+          <div style="background: rgba(255,255,255,0.7); border: 1px solid var(--glass-border); padding: 1.25rem; border-radius: var(--radius-lg); text-align: center;">
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Academic Year</span>
+            <div id="profileYear" style="font-size: 1.25rem; font-weight: 800; color: var(--accent-blue); margin-top: 0.3rem;">2026–27</div>
+          </div>
+          <div style="background: rgba(255,255,255,0.7); border: 1px solid var(--glass-border); padding: 1.25rem; border-radius: var(--radius-lg); text-align: center;">
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Weekly Study</span>
+            <div id="profileHours" style="font-size: 1.25rem; font-weight: 800; color: var(--accent-emerald); margin-top: 0.3rem;">18.5 hrs</div>
+          </div>
+          <div style="background: rgba(255,255,255,0.7); border: 1px solid var(--glass-border); padding: 1.25rem; border-radius: var(--radius-lg); text-align: center;">
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Wellness Score</span>
+            <div id="profileScore" style="font-size: 1.25rem; font-weight: 800; color: var(--accent-indigo); margin-top: 0.3rem;">82 / 100</div>
+          </div>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.6); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 1.5rem; line-height: 1.6;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Project Abstract</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">
+            <strong>MindMate AI</strong> combines conversational Artificial Intelligence, real-time emotion analysis, voice interaction, personalized wellness recommendations, and an intelligent study planner to empower college students navigating academic pressure and exam schedules.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal: Generate AI Study Schedule -->
+  <div class="modal-backdrop" id="scheduleModal" style="position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 1rem;">
+    <div class="glass-panel" style="width: 100%; max-width: 480px; background: rgba(255, 255, 255, 0.95);">
+      <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem;">Generate AI Study Plan</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">AI will breakdown your syllabus into daily micro-sprints.</p>
+
+      <form id="scheduleForm">
+        <div style="margin-bottom: 1rem;">
+          <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 0.35rem;">Subject Name:</label>
+          <input type="text" id="schedSubject" class="chat-input" placeholder="e.g. Computer Networks & Security" required />
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+          <div>
+            <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 0.35rem;">Exam Date:</label>
+            <input type="date" id="schedDate" class="chat-input" value="2026-12-08" required />
+          </div>
+          <div>
+            <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 0.35rem;">Target Hours:</label>
+            <input type="number" id="schedHours" class="chat-input" value="12" min="2" max="60" required />
+          </div>
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 0.35rem;">Topics (Comma separated):</label>
+          <input type="text" id="schedTopics" class="chat-input" placeholder="OSI model, TCP/IP, Congestion Control, Cryptography" />
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" id="closeScheduleModalBtn" class="icon-btn" style="width: auto; padding: 0 1.25rem; font-size: 0.9rem;">Cancel</button>
+          <button type="submit" class="btn-send">Generate Schedule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
