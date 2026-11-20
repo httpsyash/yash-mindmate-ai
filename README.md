@@ -104,15 +104,21 @@ PORT=4000
 ### 1. Prerequisites
 Ensure **Node.js** (v16+) and **npm** are installed on your system.
 
-### 2. Start the Server
+### 2. Install Dependencies
 ```bash
-cd /home/yash/Desktop/mindmate-ai
+npm install
+```
+
+### 3. Start the Server (No API Key Required)
+The project works **without a Gemini API key** - it automatically falls back to a built-in rule-based NLP engine for emotion analysis and companion responses.
+
+```bash
 npm start
 # Alternatively:
 node src/server.js
 ```
 
-### 3. Open in Browser
+### 4. Open in Browser
 Open your favorite web browser and navigate to:
 ```
 http://localhost:4000
